@@ -1,7 +1,7 @@
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useCart } from '../../context/cart-context';
-export const HorizontalProductCard = (product) => {
+export const HorizontalProductCard = ({product}) => {
      const { cartDispatch } = useCart();
      const onRemoveClick = (product) => {
           cartDispatch({
@@ -13,13 +13,11 @@ export const HorizontalProductCard = (product) => {
           <>
                <div className="card-horizontal d-flex shadow">
                     <div className="card-hori-image-container relative">
-                         {/* <img className="card-image"  src={product.images[0]} alt="shoes"/>  */}
-                         {/* <img 
-  className="card-image" 
-  src={product?.images?.[0] || 'default-image.jpg'} 
-  alt="shoes" 
-/> */}
-
+                    <img
+                              className="card-image"
+                              src={product?.images?.[0] || 'default-image.jpg'}
+                              alt="shoes"
+                         />
                     </div>
                     <div className="card-details d-flex direction-column">
                          <div className="card-title">{product.title} </div>

@@ -20,7 +20,9 @@ export const ProductCard = ({ product }) => {
     return (
         <div className="card card-vertical d-flex direction-column relative shadow">
             <div className="card-image-container">
-                <img className="card-image" src={product.images[0]} alt="shoes" />
+                <img className="card-image" src={product?.images?.[0] || 'default-image.jpg'} alt="product" />
+                
+
             </div>
             <div className="card-details">
                 <div className="card-title">{product.title}</div>
