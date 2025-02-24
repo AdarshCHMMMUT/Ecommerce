@@ -4,24 +4,27 @@ import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
 
-    const { loginDispatch, email, pasword } = useLogin();
+    const { loginDispatch, email, password } = useLogin();
 
     const navigate = useNavigate();
 
     const onFormSubmit = async (e) => {
         e.preventDefault();
-        const data = await userLogin(email, pasword);
-        loginDispatch ({
-            type: 'TOKEN',
-            payload: {
-                token: data
-            }
-        })
-        if(data.access_token)
-        {
-            navigate('/')
+        const data = await userLogin(email, password);
+        console.log(data);
+        console.log(data.access_token);
+        if (data && data.access_token) {
+            loginDispatch({
+                type: 'TOKEN',
+                payload: {
+                    token: data.access_token
+                }
+            });
+            navigate('/');
+        } else {
+            console.error("Login failed", data.error || "Unknown error");
         }
-    }
+    };
     const onEmailChange = (e) => {
         loginDispatch(
             {
@@ -49,13 +52,13 @@ export const Login = () => {
            
             <h2 className="flex justify-center text-3xl">Login</h2>
             <div className="flex flex-col gap-2">
-                <span>Email *</span>
-                <input onChange={onEmailChange}className="border-b-2" type="email" required placeholder="adarsh@gmail.com">
+                <span>email *</span>
+                <input onChange={onEmailChange} value = {email} className="border-b-2" type="text" required placeholder="Enter email">
                 </input>
             </div>
             <div className="flex flex-col gap-2">
                 <span>Password*</span>
-                <input  onChange={onPasswordChange} type="password" required placeholder="**********">
+                <input  onChange={onPasswordChange} value = {password} type="password" required placeholder="**********">
                 </input>
             </div>
             <div className="flex justify-center items-center   ">

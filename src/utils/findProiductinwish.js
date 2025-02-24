@@ -1,0 +1,1 @@
+export const findProductInWish = (wish,id)=> wish?.length > 0 && wish.some(product => product.id === id)

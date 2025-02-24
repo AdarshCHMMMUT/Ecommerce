@@ -13,7 +13,7 @@ export const loginReducer = (state,{type, payload}) =>{
      case 'TOKEN':
         return{
             ...state,
-            token: payload.token
+            token: payload.value
         }
       case "LOGOUT":
          return{

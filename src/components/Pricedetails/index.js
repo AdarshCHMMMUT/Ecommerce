@@ -3,7 +3,7 @@ import React from "react";
 import { useCart } from "../../context/cart-context"
 import { getTotalCartAmount } from "../../utils/getTotalCartAmount";
 import StripeCheckout from "react-stripe-checkout"
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 // import { loadStripe } from "@stripe/stripe-js";
  
 export const PriceDetails = () => {

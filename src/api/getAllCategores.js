@@ -10,7 +10,6 @@ export const getAllCategories = async () => {
         return data;
     } catch (err) {
         console.error("Failed to fetch products:", err);
-        // Return a more structured error or rethrow it
         throw new Error('An error occurred while fetching the products. Please try again later.');
     }
 };
