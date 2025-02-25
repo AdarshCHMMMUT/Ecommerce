@@ -1,18 +1,17 @@
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { getAllProducts } from '../../api/getAllProducts';
 import Searchbar from '../searchbar';
-import { useLogin } from '../../context/login-context';
+// import { useLogin } from '../../context/login-context';
 // import { type } from '@testing-library/user-event/dist/type';
 export const Navbar = () => {
   const navigate = useNavigate();
-  const [products, setProducts] = useState([]);
+ 
   
   const [isAccountDropdownOpen, setisAccountDropdownOpen] = useState(false);
-  const { token, loginDispatch } = useLogin;
+  // const { token, loginDispatch } = useLogin;
   // console.log("here is token");
   // console.log(token);
   
@@ -31,14 +30,7 @@ export const Navbar = () => {
   //   })
   // }
   
-  useEffect(() => {
-    (async () => {
-      const product = await getAllProducts();
-      setProducts(product);
-    })()
-
-
-  }, [])
+  
   return (
     <header className="flex bg-green-500 justify-between  ">
       <div onClick={() => navigate('/')} >
