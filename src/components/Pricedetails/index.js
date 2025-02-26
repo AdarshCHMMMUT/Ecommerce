@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import React from "react";
 import { useCart } from "../../context/cart-context"
 import { getTotalCartAmount } from "../../utils/getTotalCartAmount";
@@ -11,11 +11,16 @@ export const PriceDetails = () => {
     const totalCartAmount = getTotalCartAmount(cart)
     const deliveryCharge = 49;
     
-    const [product, setProduct]= useState({
-        name: "React from F8",
+    // const [product, setProduct]= useState({
+    //     name: "React from F8",
+    //     price: 10,
+    //     productBy: "facebook"
+    //  });
+    const product = {
+      name: "React from F8",
         price: 10,
         productBy: "facebook"
-     });
+    }
     //  const navigate = useNavigate();
      const onToken = (token) => {
         console.log('Payment Token:', token);

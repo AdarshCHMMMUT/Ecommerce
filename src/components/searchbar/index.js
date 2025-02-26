@@ -24,7 +24,7 @@ const Searchbar = () => {
     }
     useEffect(() => {
         fetchProducts()
-    }, [value])
+    })
 
     return (
         <div className="">
