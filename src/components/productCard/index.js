@@ -45,7 +45,7 @@ export const ProductCard = ({ product }) => {
         }
     }
     return (
-        <div className="card card-vertical d-flex direction-column relative shadow">
+        <div className=" card card-vertical d-flex direction-column relative shadow">
             <div className="card-image-container">
                 {/* <img className="card-image" src={product?.images?.[1] || 'default-image.jpg'} alt="product" /> */}
 
@@ -57,7 +57,7 @@ export const ProductCard = ({ product }) => {
 
                         <div className="carousel-inner">
                             <div className="carousel-item active ">
-                                <img src={product?.images?.[0] || 'default-image.jpg'} className="d-block w-full h-96 object-cover md:object-contain" alt="Acessories" />
+                                <img src={product?.images?.[0] || 'default-image.jpg'} className="d-block w-full h-96  object-cover md:object-contain" alt="Acessories" />
                             </div>
 
                             <div className="carousel-item ">

@@ -20,8 +20,8 @@ app.get("/",(req,res)=>{
 app.post("/payment",(req,res) => {
 
     const {product, token} = req.body;
-    console.log("PRODUCT",product);
-    console.log("PRICE", product.price);
+    // console.log("PRODUCT",product);
+    // console.log("PRICE", product.price);
     const idempontencyKey = uuidv4();
 
     return stripe.customers.create({

@@ -11,7 +11,7 @@ const Searchbar = () => {
             if (Array.isArray(products) && products.length > 0) {
                 const updatedProducts = products.filter(product => product.title
                     .toLowerCase().includes(value.toLowerCase()));
-                console.log(updatedProducts)
+                // console.log(updatedProducts)
                 setSuggestions(updatedProducts);
             }
             else {
@@ -27,7 +27,7 @@ const Searchbar = () => {
     })
 
     return (
-        <div className="">
+        <div className="w-40vw">
             <input
                 className="text-black p-1 rounded-lg"
                 type="text"

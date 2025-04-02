@@ -23,7 +23,7 @@ export const PriceDetails = () => {
     }
     //  const navigate = useNavigate();
      const onToken = (token) => {
-        console.log('Payment Token:', token);
+        // console.log('Payment Token:', token);
         fetch(`http://localhost:8282/payment`, {
           method: 'POST',
           headers: {
@@ -61,9 +61,9 @@ export const PriceDetails = () => {
        headers,
        body: JSON.stringify(body)
       }).then(response =>{
-       console.log("RESPONSE",response);
-       const {status} = response;
-       console.log("STATUS",status);
+      //  console.log("RESPONSE",response);
+      //  const {status} = response;
+      //  console.log("STATUS",status);
       })
       .catch(error => console.log(error));
    };

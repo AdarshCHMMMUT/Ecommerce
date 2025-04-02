@@ -23,7 +23,7 @@ export const Home = () => {
         (async () => {
             const product = await getAllProducts();
             const categories = await getAllCategories();
-            console.log(categories);
+            // console.log(categories);
             const updatedCategories = [...categories, { id: '1a', name: 'All' }]
             setProducts(product);     
             setCategories(updatedCategories);
@@ -33,8 +33,8 @@ export const Home = () => {
     }, [])
    
     const onCategoryClick = (category) => {
-        console.log({ category });
-        console.log(products);
+        // console.log({ category });
+        // console.log(products);
         // setProducts(product);  
         const filterByCategories = category.toLowerCase() === 'all' ? products : products?.length > 0 && products.filter(product => product.category.name
             .toLowerCase() === category.toLowerCase());
@@ -45,24 +45,24 @@ export const Home = () => {
     return (
         <>
             <Navbar />
-            <main className="pt-16  bg-white ">
-                <div className="px-32  pb-16">
-                    <div id="myCarousel" className="carousel slide " data-bs-ride="carousel">
+            <main className="pt-10  bg-white ">
+                <div className="px-0  pb-10">
+                    <div id="myCarousel" className="carousel slide h-[25vh] " data-bs-ride="carousel">
 
-                        <div className="carousel-inner ">
+                        <div className="carousel-inner h-[25vh]">
                             <div className="carousel-item ">
-                                <img src="1.jpg" className="d-block w-full h-96 object-cover md:object-contain shadow-md" alt="Acessories" />
+                                <img src="1.jpg" className="d-block w-full h-[25vh] object-cover md:object-contain shadow-md" alt="Acessories" />
                             </div>
 
                             <div className="carousel-item ">
-                                <img src="2.jpg" className="d-block w-full h-96 object-cover md:object-contain shadow-md" alt="Clothing" />
+                                <img src="2.jpg" className="d-block w-full h-[25vh] object-cover md:object-contain shadow-md" alt="Clothing" />
                             </div>
 
                             <div className="carousel-item active ">
-                                <img src="3.jpg" className="d-block w-full h-96 object-cover md:object-contain shadow-md" alt="furniture" />
+                                <img src="3.jpg" className="d-block w-full h-[25vh] object-cover md:object-contain shadow-md" alt="furniture" />
                             </div>
                             <div className="carousel-item ">
-                                <img src="4.jpg" className="d-block w-full h-96 object-cover md:object-contain shadow-md" alt="footwear" />
+                                <img src="4.jpg" className="d-block w-full h-[25vh] object-cover md:object-contain shadow-md" alt="footwear" />
                             </div>
                         </div>
 
@@ -78,15 +78,15 @@ export const Home = () => {
                     </div>
 
                 </div>
-                <div className="flex gap-4 justify-center mb-4">
+                <div className="flex flex-wrap gap-1 justify-center mb-4">
                     {
                         categories?.length > 0 && categories.map(category => <div key={category.id} className="bg-green-400
-                         font-semibold rounded-full p-2.5 hover:cursor-pointer" onClick={() => onCategoryClick(category.name)}>{category.name}</div>)
+                         font-semibold text-[1vw] rounded-full p-2.5 hover:cursor-pointer" onClick={() => onCategoryClick(category.name)}>{category.name}</div>)
                     }
                 </div>
                 <div className="flex flex-wrap gap-8 pb-1 shadow-md justify-center">
                     {
-                        products?.length > 0 ? products.map(product => <ProductCard key={product.id} product={product} />) : <h2>No product found. Please try another category</h2>
+                        products?.length > 0 ? products.map(product => <ProductCard style={{ width: '6vw', height: '10vh' }} key={product.id} product={product} />) : <h2>No product found. Please try another category</h2>
                     }
                 </div>
 
