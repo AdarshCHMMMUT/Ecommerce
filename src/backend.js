@@ -2,26 +2,19 @@ const express = require("express");
 const cors = require("cors");
 const stripe = require("stripe")("sk_test_51QJZtIDugOeILmRZ9vvBZ8CG4VrTwXpv9Qs5OsMasOY2uGIbg9AzQnvIqw8Er68xRrgJtNPawwHN0Oom6q1uRChs008YbqiblE");
 const { v4: uuidv4 } = require('uuid');
-// import { v4 as uuidv4 } from 'uuid';
-
-
 const app = express();
-
 //middleware
 app.use(express.json());
 app.use(cors());
 
-
 //routes
 app.get("/",(req,res)=>{
-    res.send("IT works at learcodeonline");
+    res.send("Api is working fine");
 })
 
 app.post("/payment",(req,res) => {
 
     const {product, token} = req.body;
-    // console.log("PRODUCT",product);
-    // console.log("PRICE", product.price);
     const idempontencyKey = uuidv4();
 
     return stripe.customers.create({
@@ -42,6 +35,8 @@ app.post("/payment",(req,res) => {
             }
         },{idempontencyKey})
     })
+
+    
     .then(result =>res.status(200).json(result))
     .catch(err => console.log(err))
 })

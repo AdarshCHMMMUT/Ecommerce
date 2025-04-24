@@ -3,49 +3,45 @@ import { ProductCard } from "../../components/productCard";
 import Footer from "../../components/footer";
 import { useEffect, useState } from "react";
 import { getAllProducts } from "../../api/getAllProducts";
-// import { useCart } from "../../context/cart-context";
-// import { useWish } from "../../context/wish-context";
 import { getAllCategories } from "../../api/getAllCategores";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-
-
-
 export const Home = () => {
+    const [allproducts, setallproducts] = useState([]);
     const [products, setProducts] = useState([]);
-  
-
     const [categories, setCategories] = useState([]);
-    // const { cart } = useCart();
-    // const { wish } = useWish();
-
+    // const [loading, setLoading] = useState(false);
+    
     useEffect(() => {
         (async () => {
-            const product = await getAllProducts();
+            // setLoading(true);
+            const productlist = await getAllProducts();
             const categories = await getAllCategories();
-            // console.log(categories);
             const updatedCategories = [...categories, { id: '1a', name: 'All' }]
-            setProducts(product);     
+            setProducts(productlist); 
+            setallproducts(productlist);     
             setCategories(updatedCategories);
         })()
-
-
     }, [])
-   
-    const onCategoryClick = (category) => {
-        // console.log({ category });
-        // console.log(products);
-        // setProducts(product);  
-        const filterByCategories = category.toLowerCase() === 'all' ? products : products?.length > 0 && products.filter(product => product.category.name
+    console.log(products);
+    const onCategoryClick = async(category) => {
+        const filterByCategories = category.toLowerCase() === 'all' ? allproducts : allproducts?.length > 0 && allproducts.filter(product => product.category.name
             .toLowerCase() === category.toLowerCase());
         setProducts(filterByCategories);
-
     }
 
     return (
         <>
             <Navbar />
-            <main className="pt-10  bg-white ">
+            <main className="pt-10 bg-gradient-to-br from-green-200 via-gray-100 to-gray-300
+
+
+
+ ">
+            {/* <section className="min-h-screen bg-gradient-to-br from-green-100 via-white to-green-50 flex items-center justify-center px-4 py-10">
+  {/* Place your main content or sidebar here */}
+{/* </section> */} */
+
                 <div className="px-0  pb-10">
                     <div id="myCarousel" className="carousel slide h-[25vh] " data-bs-ride="carousel">
 

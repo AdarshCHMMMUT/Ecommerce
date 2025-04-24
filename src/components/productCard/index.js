@@ -47,11 +47,6 @@ export const ProductCard = ({ product }) => {
     return (
         <div className=" card card-vertical d-flex direction-column relative shadow">
             <div className="card-image-container">
-                {/* <img className="card-image" src={product?.images?.[1] || 'default-image.jpg'} alt="product" /> */}
-
-
-
-
                 <div className="">
                     <div id="myCarousel1" className="carousel slide " data-bs-ride="carousel">
 
@@ -82,12 +77,6 @@ export const ProductCard = ({ product }) => {
                     </div>
 
                 </div>
-
-
-
-
-
-
 
             </div>
             <div className="card-details">
@@ -126,7 +115,5 @@ export const ProductCard = ({ product }) => {
                 </div>
             </div>
         </div>
-
-
     )
 }

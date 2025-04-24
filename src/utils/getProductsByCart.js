@@ -1,4 +1,8 @@
 export const getProductsByCategory = (products, category) =>{
-    return category.toLowerCase() === 'all' ? products : products.filter(product => product.catgory.name
-        .toLowerCase() === category.toLowerCase() );
+
+    if( category.toLowerCase() === 'all') return products 
+    else {
+        products.filter(product => product.catgory.name.toLowerCase() === category.toLowerCase() );
+        return products;
+    }
     }
