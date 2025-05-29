@@ -7,6 +7,7 @@ import { Wishlist } from "./pages/wishlist";
 import { AuthSignup } from "./pages/AuthSignup";
 import { Authforgot } from "./pages/authForgot";
 import { Profile } from "./components/profile";
+import { Orders } from "./pages/orders";
 function App() {
   return (
     <Routes>
@@ -17,6 +18,8 @@ function App() {
       <Route path = "/auth/forgot-password" element = {<Authforgot/>}/>
       <Route path = "/wishlist" element = {<Wishlist/>}/>
       <Route path = "/profile" element = {<Profile/>}/>
+      <Route path = "/orders" element = {<Orders/>}/>
+
 
       
     </Routes>

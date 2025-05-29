@@ -34,13 +34,31 @@ export const HoverSidebar = () => {
               <SidebarButton label="🔑 Login" onClick={() => navigate("/auth/login")} />
             </li>
             <li>
-              <SidebarButton
-                label="🚪 Logout"
-                onClick={() => {
-                  alert("Logged out!");
-                  navigate("/auth/login");
-                }}
-              />
+            <SidebarButton
+  label="🚪 Logout"
+  onClick={async () => {
+    try {
+      const response = await fetch("http://localhost:4000/api/auth/logout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        path: "/"
+      });
+      
+
+      if (response.ok) {
+        alert("Logged out!");
+        window.location.href = "/auth/login";
+      } else {
+        alert("Logout failed.");
+      }
+    } catch (error) {
+      console.error("Logout error:", error);
+      alert("An error occurred during logout.");
+    }
+  }}
+/>
+
             </li>
           </ul>
         </div>

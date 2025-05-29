@@ -15,7 +15,8 @@ export const Login = () => {
         body: JSON.stringify({
           email,
           password
-        })
+        }),
+         credentials: "include"
        } )
        const data = await res.json();
        if(data.success)

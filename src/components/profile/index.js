@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState,useEffect } from "react";
 import { Navbar } from "../Navabar";
 
 export const Profile = () => {
@@ -11,7 +11,7 @@ export const Profile = () => {
       headers : {"Content-Type": "application/json"},
       credentials: "include"
      })
-     if (!res.ok) {
+    if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
 
@@ -31,6 +31,11 @@ export const Profile = () => {
   }
   fetchprofile();
 }, [])
+
+ 
+
+
+  
   return (
     <>
       <Navbar />
@@ -40,7 +45,9 @@ export const Profile = () => {
             <>
               <div className="flex items-center space-x-6 mb-8">
                 <img
-                  src={user.profilePic || "https://via.placeholder.com/80"}
+                  src={
+                    user.profilePicture || "https://via.placeholder.com/80"
+                  }
                   alt="Profile"
                   className="w-20 h-20 rounded-full border-4 border-green-600"
                 />
@@ -53,7 +60,7 @@ export const Profile = () => {
 
               <div className="space-y-4 text-green-900">
                 <InfoRow label="Name" value={user.name} />
-                <InfoRow label="Gender" value={user.gender} />
+                <InfoRow label="Gender" value={"Male"} />
                 <InfoRow label="Email" value={user.email} />
                 <InfoRow label="Address" value={user.address} />
               </div>

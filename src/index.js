@@ -13,7 +13,6 @@ root.render(
     <BrowserRouter>
     <CartProvider>
         <WishProvider>
-
     <App />
         </WishProvider>
     </CartProvider>
