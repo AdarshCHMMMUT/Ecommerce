@@ -1,40 +1,39 @@
-import React, {  useState,useEffect } from "react";
+import React, {  useEffect,useState } from "react";
 import { Navbar } from "../Navabar";
-
+import { useAuth } from "../../context/authcontext";
 export const Profile = () => {
-  const [user,setuser] = useState(null);
-  useEffect(()=>{
-  const fetchprofile = async()=>{
-  try{
-     const res = await fetch("http://localhost:4000/api/user/profile",{
-      method : "GET",
-      headers : {"Content-Type": "application/json"},
-      credentials: "include"
-     })
-    if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status}`);
-    }
+  const [user, setUser] = useState(null);
+  const { userid } = useAuth();
+  console.log(userid);
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const res = await fetch("https://thirdcopyback.vercel.app/api/user/profile", {
+          method: "POST",
+          body: JSON.stringify({userId: userid}), 
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+        });
 
-    const data = await res.json();
-    console.log("Fetched profile data:", data);
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
 
-    if (data.success && data.user) {
-      setuser(data.user);
-    } else {
-      console.error("Unexpected response:", data);
-    }
-    }
-  catch(error)
-  {
-    console.error(`some error happened ${error.message}`);
-  }
-  }
-  fetchprofile();
-}, [])
+        const data = await res.json();
+        console.log("Fetched profile data:", data);
 
- 
+        if (data.success && data.user) {
+          setUser(data.user);
+        } else {
+          console.error("Unexpected response:", data);
+        }
+      } catch (error) {
+        console.error(`Some error happened: ${error.message}`);
+      }
+    };
 
-
+    fetchProfile();
+  }, [userid]);
   
   return (
     <>

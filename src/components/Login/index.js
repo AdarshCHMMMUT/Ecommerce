@@ -1,37 +1,36 @@
 import { useState } from "react";
-import { Link ,useNavigate} from "react-router-dom"; // Only if you're using routing
+import { Link ,useNavigate} from "react-router-dom"; 
+import { useAuth } from "../../context/authcontext";
 export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { login } = useAuth(); 
+
   const onFormSubmit = async (e) => {
     e.preventDefault();
-    // Add your login logic here
-    try{
-       const res = await fetch("http://localhost:4000/api/auth/login",{
 
+    try {
+      const res = await fetch("https://thirdcopyback.vercel.app/api/auth/login", {
         method: "POST",
-        headers :{ "Content-Type" : "application/json"},
-        body: JSON.stringify({
-          email,
-          password
-        }),
-         credentials: "include"
-       } )
-       const data = await res.json();
-       if(data.success)
-       {
-        alert(`you are logged in`);
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        login(data.user._id); 
+        alert("You are logged in");
         navigate("/");
-       }
-       else{
-        alert(res.message);
-       }
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error(`Something went wrong: ${error.message}`);
     }
-    catch(error)
-    {
-    console.error(`something went wrong ${error.message}`)
-    }
+
     console.log("Logging in with", email, password);
   };
 

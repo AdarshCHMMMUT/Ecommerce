@@ -1,29 +1,41 @@
-import { useState, useEffect } from "react";
-import { getAllProducts } from "../../api/getAllProducts";
+import { useState, useCallback, useEffect } from "react";
+import axios from "axios";
+
 
 const Searchbar = () => {
   const [value, setValue] = useState('');
   const [suggestions, setSuggestions] = useState([]);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const products = await getAllProducts();
-        if (Array.isArray(products) && products.length > 0) {
-          const updatedProducts = products.filter(product =>
-            product.title.toLowerCase().includes(value.toLowerCase())
-          );
-          setSuggestions(updatedProducts);
-        } else {
-          setSuggestions([]);
-        }
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
+  const fetchSuggestions = useCallback(async (searchTerm) => {
+    try {
+      const response = await axios.get(`https://thirdcopyback.vercel.app/api/user/items`);
+      const products = response.data.items;
 
-    fetchProducts();
-  }, [value]);
+      if (Array.isArray(products)) {
+        const filtered = products.filter(product =>
+          product.title.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setSuggestions(filtered);
+      } else {
+        setSuggestions([]);
+      }
+    } catch (error) {
+      console.error("Failed to fetch products:", error);
+    }
+  }, []);
+  useEffect(() => {
+    if (value.trim() === '') {
+      setSuggestions([]);
+      return;
+    }
+
+    const delayDebounce = setTimeout(() => {
+      fetchSuggestions(value);
+    }, 300); 
+    
+    return () => clearTimeout(delayDebounce);
+  }, [value, fetchSuggestions]);
+
 
   return (
     <div className="relative w-full max-w-lg"> {/* made it wider */}
@@ -40,6 +52,7 @@ const Searchbar = () => {
             <li
               className="list-none p-2 hover:bg-green-500 hover:text-white cursor-pointer rounded"
               key={product.id}
+
             >
               {product.title}
             </li>

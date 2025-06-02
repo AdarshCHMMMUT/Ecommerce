@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 export const Cart = () => {
 
     const { cart } = useCart();
+    console.log(cart);
     const Navigate = useNavigate();
     return (
         <>

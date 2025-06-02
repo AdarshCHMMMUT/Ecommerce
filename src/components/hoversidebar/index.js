@@ -38,7 +38,7 @@ export const HoverSidebar = () => {
   label="🚪 Logout"
   onClick={async () => {
     try {
-      const response = await fetch("http://localhost:4000/api/auth/logout", {
+      const response = await fetch("https://thirdcopyback.vercel.app/api/auth/logout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

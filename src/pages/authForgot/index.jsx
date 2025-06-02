@@ -17,9 +17,9 @@ export const Authforgot = () =>{
         return;
       }
   
-      // Call your verify email API here
+      
       try {
-        const res = await fetch("http://localhost:4000/api/auth/send-reset-otp", {
+        const res = await fetch("https://thirdcopyback.vercel.app/api/auth/send-reset-otp", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name, email })
@@ -29,7 +29,7 @@ export const Authforgot = () =>{
   
         if (data.success) {
           alert("Verification mail sent. Check your email for the OTP.");
-          setShowOtpField(true);  // ✅ Show OTP field
+          setShowOtpField(true);  
         } else {
           alert(data.message || "Verification failed.");
         }
@@ -45,7 +45,7 @@ export const Authforgot = () =>{
         return;
       }
      try{
-        const res = await fetch("http://localhost:4000/api/auth/reset-password",{
+        const res = await fetch("https://thirdcopyback.vercel.app/api/auth/reset-password",{
             method: "POST",
             headers: {"Content-Type" :"application/json"},
             body:JSON.stringify({
@@ -65,7 +65,7 @@ export const Authforgot = () =>{
      {
         console.error(`something is wrong with otp`);
      }
-      // Call your reset password API here
+      
       
     };
   
