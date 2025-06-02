@@ -2,7 +2,7 @@ import { useCart } from "../../context/cart-context"
 import { getTotalCartAmount } from "../../utils/getTotalCartAmount";
 import StripeCheckout from "react-stripe-checkout"
 import { useAuth } from "../../context/authcontext";
- 
+import {toast} from 'react-toastify';
 export const PriceDetails = () => {
     const { cart } = useCart();
     const totalCartAmount = getTotalCartAmount(cart)
@@ -18,13 +18,13 @@ export const PriceDetails = () => {
           body: JSON.stringify({ token, amount: 1000000 }),
         }).then((response) => 
           {
-            if (response.ok) {alert('Payment Successful!');}
-            else {alert('Payment Failed');}
+            if (response.ok) {toast.success('Payment Successful!');}
+            else {toast.warn('Payment Failed');}
             return response.json();
           }).catch((error) => 
             {
             console.error('Error processing payment:', error);
-            alert('An error occurred. Please try again.');
+            toast.error('An error occurred. Please try again.');
             });};
 
   const makePayment = async (token, product) => {
@@ -62,7 +62,7 @@ export const PriceDetails = () => {
     return data;
   } catch (error) {
     console.error('Payment error:', error.message);
-    alert(`Payment failed: ${error.message}`);
+    toast.error(`Payment failed: ${error.message}`);
     throw error;
   }
 };

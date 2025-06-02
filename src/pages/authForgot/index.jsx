@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Navbar } from "../../components/Navabar"
-
+import { toast } from "react-toastify";
 export const Authforgot = () =>{
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -13,7 +13,7 @@ export const Authforgot = () =>{
   
     const verifyEmail = async () => {
       if (!name || !email) {
-        alert("Please fill in both Name and Email!");
+        toast.info("Please fill in both Name and Email!");
         return;
       }
   
@@ -28,20 +28,20 @@ export const Authforgot = () =>{
         const data = await res.json();
   
         if (data.success) {
-          alert("Verification mail sent. Check your email for the OTP.");
+          toast.success("Verification mail sent. Check your email for the OTP.");
           setShowOtpField(true);  
         } else {
-          alert(data.message || "Verification failed.");
+          toast.warn(data.message || "Verification failed.");
         }
       } catch (error) {
         console.error(`Verification failed: ${error.message}`);
-        alert("Error verifying email.");
+        toast.error("Error verifying email.");
       }
     };
   
     const resetPassword = async () => {
       if (!otp) {
-        alert("Please enter the OTP.");
+        toast.info("Please enter the OTP.");
         return;
       }
      try{
@@ -57,7 +57,7 @@ export const Authforgot = () =>{
         const data = await res.json();
         if(data.success)
         {
-          alert(`your password is has been reset`);
+          toast.success(`your password is has been reset`);
           navigate("/auth/login");
         }
      }

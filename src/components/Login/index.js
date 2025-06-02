@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link ,useNavigate} from "react-router-dom"; 
 import { useAuth } from "../../context/authcontext";
+import { toast } from "react-toastify";
 export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,10 +23,10 @@ export const Login = () => {
 
       if (data.success) {
         login(data.user._id); 
-        alert("You are logged in");
+        toast.success("You are logged in");
         navigate("/");
       } else {
-        alert(data.message);
+        toast.info(data.message);
       }
     } catch (error) {
       console.error(`Something went wrong: ${error.message}`);

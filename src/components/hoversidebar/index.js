@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { toast } from "react-toastify";
 export const HoverSidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
@@ -47,14 +47,14 @@ export const HoverSidebar = () => {
       
 
       if (response.ok) {
-        alert("Logged out!");
+        toast.success("Logged out!");
         window.location.href = "/auth/login";
       } else {
-        alert("Logout failed.");
+        toast.info("Logout failed.");
       }
     } catch (error) {
       console.error("Logout error:", error);
-      alert("An error occurred during logout.");
+      toast.error("An error occurred during logout.");
     }
   }}
 />

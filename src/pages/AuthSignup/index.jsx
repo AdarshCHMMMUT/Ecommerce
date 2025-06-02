@@ -1,7 +1,7 @@
 import { Navbar } from "../../components/Navabar";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import { toast } from "react-toastify";
 export const AuthSignup = () => {
   const navigate = useNavigate();   
 
@@ -18,7 +18,7 @@ export const AuthSignup = () => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      alert("Passwords do not match!");
+      toast.warn("Passwords do not match!");
       return;
     }
 
@@ -41,15 +41,15 @@ export const AuthSignup = () => {
       console.log("Response:", data);
 
       if (data.success) {
-        alert(`${name}, your account has been created successfully!`);
+        toast.success(`${name}, your account has been created successfully!`);
         navigate("/auth/login");     
       } else {
-        alert(data.message || "Something went wrong!");
+        toast.warn(data.message || "Something went wrong!");
       }
 
     } catch (error) {
       console.error(`Error found: ${error.message}`);
-      alert("Error occurred during signup!");
+      toast.error("Error occurred during signup!");
     }
 
     console.log("Signup details:", { email, password, name });
